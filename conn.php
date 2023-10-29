@@ -3,7 +3,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db   = "edusmart_bd";
+$db   = "edusmart_v2";
 $conn = null;
 
 try {

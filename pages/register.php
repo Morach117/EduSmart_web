@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "edusmart_bd";
+$dbname = "edusmart_v2";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
@@ -20,14 +20,16 @@ function encriptarContraseña($contraseña)
 
 // Obtener los datos del formulario
 $nombre = "";
-$apellido = "";
+$app = "";
+$apm = "";
 $correo = "";
 $contraseña = "";
 $mensaje = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nombre = $_POST["nombre"];
-    $apellido = $_POST["apellido"];
+    $app = $_POST["app"];
+    $apm =$_POST["apm"];
     $correo = $_POST["correo"];
     $contraseña = $_POST["contraseña"];
 
@@ -47,15 +49,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $contraseñaEncriptada = encriptarContraseña($contraseña);
 
             // Insertar los datos en la base de datos
-            $sql = "INSERT INTO docentes (nombre, apellido, correo_electronico, contrasena) VALUES ('$nombre', '$apellido', '$correo', '$contraseñaEncriptada')";
+            $sql = "INSERT INTO docentes (nombre, app, apm , correo_electronico, contrasena) VALUES ('$nombre', '$app', '$apm', '$correo', '$contraseñaEncriptada')";
 
             if ($conn->query($sql) === true) {
                 // Redirigir al usuario a la página de inicio de sesión
                 header("Location: ../index.php");
+                
                 exit();
             } else {
                 $mensaje = "Error al crear el usuario: " . $conn->error;
             }
+            
         }
     }
 }
@@ -109,9 +113,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             value="<?php echo $nombre; ?>" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Apellido</label>
-                        <input type="text" class="form-control" placeholder="Ingrese su apellido" name="apellido"
-                            value="<?php echo $apellido; ?>" required>
+                        <label class="form-label">Apellido Paterno</label>
+                        <input type="text" class="form-control" placeholder="Ingrese su apellido Paterno" name="app"
+                            value="<?php echo $app; ?>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Apellido Materno</label>
+                        <input type="text" class="form-control" placeholder="Ingrese su apellido Materno" name="apm"
+                            value="<?php echo $apm; ?>" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Correo electrónico</label>
