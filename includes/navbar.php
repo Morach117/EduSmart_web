@@ -366,17 +366,25 @@
 <div class="modal modal-blur fade" id="modal-alumnos" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-body">
-                <form class="dropzone" id="dropzone-custom" action="./" autocomplete="off" novalidate>
-                    <div class="fallback">
-                        <input name="file" type="file" />
+            <form id="form-importar" method="post" action="./query/addAlumnos.php" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title">Importar Datos de Alumnos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="dataCliente" class="form-label">Seleccionar archivo Excel</label>
+                        <div class="custom-file">
+                            <input type="file" name="dataCliente" id="file-input" class="custom-file-input">
+                            <label class="custom-file-label" for="file-input">Elegir archivo</label>
+                        </div>
                     </div>
-                    <div class="dz-message">
-                        <h3 class="dropzone-msg-title">Da un click</h3>
-                        <span class="dropzone-msg-desc">Al hacer click se abrirá el explorador de archivos</span>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button id="btn-importar" type="submit" class="btn btn-primary">Importar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
