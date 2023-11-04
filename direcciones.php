@@ -19,7 +19,8 @@ $pages = array(
     'unidades',
     'equipos',
     'examen1',
-    'examen2'
+    'examen2',
+    'materias'
 
 );
 
