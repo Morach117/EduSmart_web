@@ -1,1 +1,1 @@
-"# EduSmart_web" 
+Parte web de EduSmart
