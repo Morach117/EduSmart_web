@@ -18,9 +18,9 @@ if (isset($_POST["id_materia"])) {
 
         // Disponer de la posibilidad de editar la imagen que se tiene en la materia.
         if (!empty($fila["img"])) {
-            $salida["imagen_materia"] = '<img src="./multimedia/' . $fila["img"] . '" class="img-thumbnail" width="100" height="50" />';
+            $salida["img"] = '<img src="././multimedia/' . $fila["img"] . '" class="img-thumbnail" width="100" height="50" />';
         } else {
-            $salida["imagen_materia"] = '<input type="hidden" name="imagen_materia_oculta" value="" />';
+            $salida["img"] = '<input type="hidden" name="imagen_materia_oculta" value="' . $fila["img"] . '" />';
         }
 
         // Exportar datos en formato JSON - String
