@@ -55,7 +55,7 @@ foreach ($resultado as $fila) {
     $sub_array[] = $fila["nombre_materia"];
     $sub_array[] = $imagen;
     $sub_array[] = '<button type="button" name="editar" data-id="' . $fila["id_materia"] . '" class="btn btn-warning btn-xs editar">Editar</button>';
-    $sub_array[] = '<button type="button" name="borrar" id="' . $fila["id_materia"] . '" class="btn btn-danger btn-xs borrar">Borrar</button>';
+    $sub_array[] = '<button type="button" name="borrar" data-id="' . $fila["id_materia"] . '" class="btn btn-danger btn-xs borrar">Borrar</button>';
 
     // Exporta la información
     $datos[] = $sub_array;
