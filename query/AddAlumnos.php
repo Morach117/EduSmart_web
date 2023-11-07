@@ -97,6 +97,6 @@ foreach ($lineas as $linea) {
 
     $i++;
 }
-header("Location:../direcciones.php") 
+header("Location:../direcciones.php?page=equipos") 
 ?>
 

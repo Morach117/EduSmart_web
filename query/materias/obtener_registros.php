@@ -38,7 +38,6 @@ $resultado = $stmt->fetchAll();
 $datos = array();
 
 // Limita la cantidad de datos a mostrar en la tabla
-$filtered_rows = $stmt->rowCount();
 
 // Genera el HTML con los datos de la tabla
 foreach ($resultado as $fila) {
@@ -64,7 +63,6 @@ foreach ($resultado as $fila) {
 $salida = array(
     "draw" => intval($_POST["draw"]),
     "recordsTotal" => obtener_todos_registros(),
-    "recordsFiltered" => $filtered_rows,
     "data" => $datos
 );
 
