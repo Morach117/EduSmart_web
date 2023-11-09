@@ -144,43 +144,6 @@
         $(document).ready(function () {
             $('#equipos-table').DataTable();
 
-            var dataTable = $('#alumnos-table').DataTable({
-                stateSave: true,
-                "processing": true,
-                "serverSide": true,
-                "paging": true,
-                "searching": true,
-                "ordering": true,
-                "order": [],
-                "ajax": {
-                    url: "./query/equipos/cargar_alumnos.php",
-                    type: "POST"
-                },
-                "columnsDefs": [{
-                    "targets": [0, 3, 4],
-                    "orderable": false
-                }],
-                "language": {
-                    "decimal": "",
-                    "emptyTable": "No hay registros",
-                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                    "infoEmpty": "Mostrando 0 a 0 de 0 Entradas",
-                    "infoFiltered": "(Filtrando de _MAX_ total entradas)",
-                    "infoPostFix": "",
-                    "thousands": ",",
-                    "lengthMenu": "Mostrar _MENU_ Entradas",
-                    "loadingRecords": "Cargando...",
-                    "processing": "Procesando...",
-                    "search": "Buscar:",
-                    "zeroRecords": "Sin resultados encontrados",
-                    "paginate": {
-                        "first": "Primero",
-                        "last": "Último",
-                        "next": "Siguiente",
-                        "previous": "Anterior"
-                    }
-                }
-            });
 
             // Captura el evento de envío del formulario
             $('#equipo-form').on('submit', function (e) {
