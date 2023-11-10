@@ -35,38 +35,37 @@
                                             style="width:100%">
                                             <thead>
                                                 <tr>
-                                                    <th>NO</th>
+                                                    <th>NP</th>
                                                     <th>Nombre del equipo</th>
                                                     <th>Integrantes</th>
-                                                    <th>Detalles</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $selAlumno = $conn->query("SELECT * FROM alumnos ORDER BY id_alumno");
+                                                $selAlumno = $conn->query("SELECT * FROM equipos");
                                                 if ($selAlumno->rowCount() > 0) {
+                                                    $i = 1; // Inicializamos el contador
                                                     while ($selAlumnoRow = $selAlumno->fetch(PDO::FETCH_ASSOC)) {
                                                         ?>
                                                         <tr>
                                                             <td>
-                                                                <?php echo $selAlumnoRow['matricula'] ?>
+                                                                <?php echo $i; ?>
                                                             </td>
                                                             <td>
-                                                                <?php echo $selAlumnoRow['nombre'] ?>
+                                                                <?php echo $selAlumnoRow['nombre_equipo'] ?>
                                                             </td>
                                                             <td>
-                                                                <?php echo $selAlumnoRow['nombre'] ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $selAlumnoRow['nombre'] ?>
+                                                                <?php echo $selAlumnoRow['numero_integrantes'] ?>
                                                             </td>
                                                         </tr>
                                                         <?php
+                                                        $i++; // Incrementamos el contador
                                                     }
                                                 } else {
                                                     echo "No hay alumnos registrados.";
                                                 }
                                                 ?>
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -205,9 +204,9 @@
                             });
                         } else {
                             Swal.fire({
-                                title: 'Error',
+                                title: 'Éxito',
                                 text: response.message,
-                                icon: 'error',
+                                icon: 'success',
                             });
                         }
                     },
