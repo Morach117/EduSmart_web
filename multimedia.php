@@ -1,4 +1,10 @@
 <?php
+session_start(); // inicia la sesion
+
+if (!isset($_SESSION['admin']['adminnakalogin']) == true) {
+    header("location:index.php"); // si el usuario no inicio sesion, lo redirige a la pagina de login
+}
+
 include('conn.php'); // Incluir archivo de conexión a la base de datos
 include('includes/navbar.php'); // Incluir archivo de barra de navegación
 
