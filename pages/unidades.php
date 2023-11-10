@@ -54,7 +54,7 @@
                                                             </td>
                                                             <td>
                                                                 <!-- Agrega los botones de acción según sea necesario -->
-                                                                <a href="editar_unidad.php?id=<?php echo $selUnidadRow['id_unidad']; ?>"
+                                                                <a href="multimedia.php?id=<?php echo $selUnidadRow['id_unidad']; ?>"
                                                                     class="btn btn-primary">Editar</a>
                                                                 <button name="borrar" type="button"
                                                                     data-id="<?php echo $selUnidadRow['id_unidad']; ?>"

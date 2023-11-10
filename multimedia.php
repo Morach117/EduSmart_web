@@ -1,3 +1,11 @@
+<?php
+include('conn.php'); // Incluir archivo de conexión a la base de datos
+include('includes/navbar.php'); // Incluir archivo de barra de navegación
+
+$id = isset($_GET['id']) ? $_GET['id'] : null;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,8 +26,26 @@
                             <fieldset class="form-fieldset">
                                 <div class="col">
                                     <h2 class="page-title">
-                                        Modulo para la gestión de temas
-                                    </h2>
+                                        Modulo para la gestión de temas ( <?php
+                    // Realiza la consulta para obtener el nombre de la unidad con PDO
+                    $sqlUnidad = "SELECT nombre_unidad FROM unidades_tematicas WHERE id_unidad = :unidad_id";
+                    $stmtUnidad = $conn->prepare($sqlUnidad);
+                    $stmtUnidad->bindParam(':unidad_id', $id, PDO::PARAM_INT);
+                    $stmtUnidad->execute();
+
+                    // Maneja el resultado de la consulta con PDO
+                    if ($stmtUnidad) {
+                        $unidadRow = $stmtUnidad->fetch(PDO::FETCH_ASSOC);
+                        $nombreUnidad = $unidadRow['nombre_unidad'];
+
+                        // Muestra el nombre de la unidad
+                        echo "$nombreUnidad";
+                    } else {
+                        // Manejar el error si la consulta no tiene éxito
+                        echo "Error al obtener la unidad";
+                    }
+                    ?>
+                                        )</h2>
                                     <h2 class="page-pretitle">
                                     </h2>
                                     <hr class="m-0" />
@@ -43,16 +69,27 @@
                                                     style="width:100%">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col">ID</th>
                                                             <th scope="col">Tema</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr class="">
-                                                            <td>1</td>
-                                                            <td>Tema 1</td>
+                                                <?php
+                                $selTema = $conn->query("SELECT * FROM tema WHERE id_unidad = $id");
+                                if ($selTema->rowCount() > 0) {
+                                                    while ($selTemadRow = $selTema->fetch(PDO::FETCH_ASSOC)) {
+                                                        ?>
+                                                        <tr>
+                                                            <td>
+                                                                <?php echo $selTemadRow['nombre'] ?>
+                                                            </td>
                                                         </tr>
-                                                    </tbody>
+                                                        <?php
+                                                    }
+                                                } else {
+                                                    echo "<tr><td colspan='3'>No hay temas registrados.</td></tr>";
+                                                }
+                                                ?>
+                                            </tbody>
                                                 </table>
                                             </div>
                                         </div>
@@ -81,11 +118,23 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr class="">
-                                                            <td>1</td>
-                                                            <td>Tema 1</td>
+                                                <?php
+                                                $sel = $conn->query("SELECT * FROM subtemas");
+                                                if ($selTema->rowCount() > 0) {
+                                                    while ($selTemadRow = $selTema->fetch(PDO::FETCH_ASSOC)) {
+                                                        ?>
+                                                        <tr>
+                                                            <td>
+                                                                <?php echo $selTemadRow['nombre'] ?>
+                                                            </td>
                                                         </tr>
-                                                    </tbody>
+                                                        <?php
+                                                    }
+                                                } else {
+                                                    echo "<tr><td colspan='3'>No hay temas registrados.</td></tr>";
+                                                }
+                                                ?>
+                                            </tbody>
                                                 </table>
                                             </div>
                                         </div>
