@@ -116,20 +116,46 @@
                             <input type="text" class="form-control" id="integrantes" name="integrantes">
                         </div>
                         <h4>Alumnos Disponibles</h4>
-                        <table id="alumnos-table" class="display">
-                            <thead>
-                                <tr>
-                                    <th>Matrícula</th>
-                                    <th>Nombre</th>
-                                    <th>Apellido Paterno</th>
-                                    <th>Apellido Materno</th>
-                                    <th>S</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Cuerpo de la tabla de alumnos -->
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table id="alumnos-table" class="table table-striped table-hover" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Matricula</th>
+                                        <th>Nombre</th>
+                                        <th>Apellidos</th>
+                                        <th>No se para que es esto</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $selAlumno = $conn->query("SELECT * FROM alumnos ORDER BY id_alumno");
+                                    if ($selAlumno->rowCount() > 0) {
+                                        while ($selAlumnoRow = $selAlumno->fetch(PDO::FETCH_ASSOC)) {
+                                            ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $selAlumnoRow['matricula'] ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $selAlumnoRow['nombre'] ?>
+                                                </td>
+                                                <td>
+                                                    <?php $Apellidos = $selAlumnoRow['app'] . " " . $selAlumnoRow['apm'];
+                                                    echo $Apellidos ?>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="" id="">
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    } else {
+                                        echo "No hay alumnos registrados.";
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -190,6 +216,10 @@
                     }
                 });
             });
+        });
+
+        $(document).ready(function () {
+            $('#alumnos-table').DataTable();
         });
     </script>
 </body>
