@@ -92,8 +92,12 @@ $id = isset($_GET['id']) ? $_GET['id'] : null;
                                                                         <?php echo $selTemadRow['nombre'] ?>
                                                                     </td>
                                                                     <td>
-                                                                        <a href="">agregar subtema</a>
-                                                                        <a href="">agregar contenido</a>
+                                                                        <a href="subtema.php?id=<?php echo $selTemadRow['id_tema'] ?>"
+                                                                            class="btn btn-primary">Agregar subtema</a>
+
+                                                                        <a href="contenido.php?id=<?php echo $selTemadRow['id_tema'] ?>"
+                                                                            class="btn btn-primary">Agregar contenido</a>
+
                                                                     </td>
                                                                 </tr>
                                                                 <?php
@@ -115,83 +119,6 @@ $id = isset($_GET['id']) ? $_GET['id'] : null;
             </div>
         </div>
     </div>
-    <!-- <div class="container">
-        <div class="row">
-
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Agregar Subtema</h5>
-                        <button class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#modalAgregarSubtema">Agregar Subtema</button>
-                    </div>
-                </div>
-
-                <div class="table-container">
-                    <h5>Subtemas Registrados</h5>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Tema Relacionado</th>
-                                <th>Subtema</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Tema 1</td>
-                                <td>Subtema 1</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Agregar Contenido Relacionado</h5>
-                        <button class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#modalAgregarContenido">Agregar Contenido</button>
-                    </div>
-                </div>
-
-                <div class="table-container">
-                    <h5>Contenido Relacionado</h5>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Subtema Relacionado</th>
-                                <th>Contenido</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Subtema 1</td>
-                                <td>Contenido relacionado 1</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="modalAgregarTema" tabindex="-1" aria-labelledby="modalAgregarTemaLabel"
-        aria-hidden="true">
-    </div>
-
-    <div class="modal fade" id="modalAgregarSubtema" tabindex="-1" aria-labelledby="modalAgregarSubtemaLabel"
-        aria-hidden="true">
-    </div>
-
-    <div class="modal fade" id="modalAgregarContenido" tabindex="-1" aria-labelledby="modalAgregarContenidoLabel"
-        aria-hidden="true">
-    </div> -->
-
     <!-- Modal Body-->
     <div class="modal fade " id="modalAgregarTema" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
         aria-hidden="true">
