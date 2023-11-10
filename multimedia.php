@@ -32,26 +32,28 @@ $id = isset($_GET['id']) ? $_GET['id'] : null;
                             <fieldset class="form-fieldset">
                                 <div class="col">
                                     <h2 class="page-title">
-                                        Modulo para la gestión de temas ( <?php
-                    // Realiza la consulta para obtener el nombre de la unidad con PDO
-                    $sqlUnidad = "SELECT nombre_unidad FROM unidades_tematicas WHERE id_unidad = :unidad_id";
-                    $stmtUnidad = $conn->prepare($sqlUnidad);
-                    $stmtUnidad->bindParam(':unidad_id', $id, PDO::PARAM_INT);
-                    $stmtUnidad->execute();
+                                        Modulo para la gestión de temas (
+                                        <?php
+                                        // Realiza la consulta para obtener el nombre de la unidad con PDO
+                                        $sqlUnidad = "SELECT nombre_unidad FROM unidades_tematicas WHERE id_unidad = :unidad_id";
+                                        $stmtUnidad = $conn->prepare($sqlUnidad);
+                                        $stmtUnidad->bindParam(':unidad_id', $id, PDO::PARAM_INT);
+                                        $stmtUnidad->execute();
 
-                    // Maneja el resultado de la consulta con PDO
-                    if ($stmtUnidad) {
-                        $unidadRow = $stmtUnidad->fetch(PDO::FETCH_ASSOC);
-                        $nombreUnidad = $unidadRow['nombre_unidad'];
+                                        // Maneja el resultado de la consulta con PDO
+                                        if ($stmtUnidad) {
+                                            $unidadRow = $stmtUnidad->fetch(PDO::FETCH_ASSOC);
+                                            $nombreUnidad = $unidadRow['nombre_unidad'];
 
-                        // Muestra el nombre de la unidad
-                        echo "$nombreUnidad";
-                    } else {
-                        // Manejar el error si la consulta no tiene éxito
-                        echo "Error al obtener la unidad";
-                    }
-                    ?>
-                                        )</h2>
+                                            // Muestra el nombre de la unidad
+                                            echo "$nombreUnidad";
+                                        } else {
+                                            // Manejar el error si la consulta no tiene éxito
+                                            echo "Error al obtener la unidad";
+                                        }
+                                        ?>
+                                        )
+                                    </h2>
                                     <h2 class="page-pretitle">
                                     </h2>
                                     <hr class="m-0" />
@@ -76,106 +78,33 @@ $id = isset($_GET['id']) ? $_GET['id'] : null;
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">Tema</th>
+                                                            <th scope="col">Acción</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                <?php
-                                $selTema = $conn->query("SELECT * FROM tema WHERE id_unidad = $id");
-                                if ($selTema->rowCount() > 0) {
-                                                    while ($selTemadRow = $selTema->fetch(PDO::FETCH_ASSOC)) {
-                                                        ?>
-                                                        <tr>
-                                                            <td>
-                                                                <?php echo $selTemadRow['nombre'] ?>
-                                                            </td>
-                                                        </tr>
                                                         <?php
-                                                    }
-                                                } else {
-                                                    echo "<tr><td colspan='3'>No hay temas registrados.</td></tr>";
-                                                }
-                                                ?>
-                                            </tbody>
+                                                        $selTema = $conn->query("SELECT * FROM tema WHERE id_unidad = $id");
+                                                        if ($selTema->rowCount() > 0) {
+                                                            while ($selTemadRow = $selTema->fetch(PDO::FETCH_ASSOC)) {
+                                                                ?>
+                                                                <tr>
+                                                                    <td>
+                                                                        <?php echo $selTemadRow['nombre'] ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="">agregar subtema</a>
+                                                                        <a href="">agregar contenido</a>
+                                                                    </td>
+                                                                </tr>
+                                                                <?php
+                                                            }
+                                                        } else {
+                                                            echo "<tr><td colspan='3'>No hay temas registrados.</td></tr>";
+                                                        }
+                                                        ?>
+                                                    </tbody>
                                                 </table>
                                             </div>
-                                        </div>
-                                        <div class="container my-3 card p-3 col">
-                                            <div class="row">
-                                                <h2 class="page-title col-8">
-                                                    Subtemas actuales
-                                                </h2>
-
-                                                <div class="col-4">
-                                                    <button class="btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#modalContenido">
-                                                        Agregar Subtema
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <hr class="m-3" />
-                                            <div class="table-responsive">
-                                                <table id="subtemas-table"
-                                                    class="table table-striped table-hover text-center"
-                                                    style="width:100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">ID</th>
-                                                            <th scope="col">Tema</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                <?php
-                                                $sel = $conn->query("SELECT * FROM subtemas");
-                                                if ($selTema->rowCount() > 0) {
-                                                    while ($selTemadRow = $selTema->fetch(PDO::FETCH_ASSOC)) {
-                                                        ?>
-                                                        <tr>
-                                                            <td>
-                                                                <?php echo $selTemadRow['nombre'] ?>
-                                                            </td>
-                                                        </tr>
-                                                        <?php
-                                                    }
-                                                } else {
-                                                    echo "<tr><td colspan='3'>No hay temas registrados.</td></tr>";
-                                                }
-                                                ?>
-                                            </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card container my- card p-3">
-                                        <div class="row p-2">
-                                            <h2 class="page-title col-6">
-                                                Contenidos actuales
-                                            </h2>
-
-                                            <div class="col-5 text-end">
-                                                <button class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#modalAgregarSubTema">
-                                                    Agregar Subtema
-                                                </button>
-                                            </div>
-                                            <div class="col"></div>
-                                        </div>
-                                        <hr class="m-1" />
-                                        <div class="table-responsive">
-                                            <table id="contenido-table"
-                                                class="table table-striped table-hover text-center" style="width:100%">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">ID</th>
-                                                        <th scope="col">Tema</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr class="">
-                                                        <td>1</td>
-                                                        <td>Tema 1</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
                                         </div>
                                     </div>
                                 </div>
