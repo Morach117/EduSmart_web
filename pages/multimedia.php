@@ -29,7 +29,6 @@
                                                 <h2 class="page-title col-8">
                                                     Temas actuales
                                                 </h2>
-
                                                 <div class="col-4">
                                                     <button class="btn btn-primary" data-bs-toggle="modal"
                                                         data-bs-target="#modalAgregarTema">
@@ -58,18 +57,21 @@
                                             </div>
                                         </div>
                                         <div class="container my-3 card p-3 col">
-                                            <h2 class="page-title">
-                                                Modulo para la gestión de temas
-                                            </h2>
-                                            <hr class="m-3" />
-                                            <div class="text-end mb-3">
-                                                <button class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#modalAgregarTema">
-                                                    Agregar Tema
-                                                </button>
+                                            <div class="row">
+                                                <h2 class="page-title col-8">
+                                                    Subtemas actuales
+                                                </h2>
+
+                                                <div class="col-4">
+                                                    <button class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#modalContenido">
+                                                        Agregar Subtema
+                                                    </button>
+                                                </div>
                                             </div>
+                                            <hr class="m-3" />
                                             <div class="table-responsive">
-                                                <table id="temas-table"
+                                                <table id="subtemas-table"
                                                     class="table table-striped table-hover text-center"
                                                     style="width:100%">
                                                     <thead>
@@ -86,6 +88,39 @@
                                                     </tbody>
                                                 </table>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="card container my- card p-3">
+                                        <div class="row p-2">
+                                            <h2 class="page-title col-6">
+                                                Contenidos actuales
+                                            </h2>
+
+                                            <div class="col-5 text-end">
+                                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#modalAgregarSubTema">
+                                                    Agregar Subtema
+                                                </button>
+                                            </div>
+                                            <div class="col"></div>
+                                        </div>
+                                        <hr class="m-1" />
+                                        <div class="table-responsive">
+                                            <table id="contenido-table"
+                                                class="table table-striped table-hover text-center" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">ID</th>
+                                                        <th scope="col">Tema</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="">
+                                                        <td>1</td>
+                                                        <td>Tema 1</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -194,6 +229,46 @@
             </div>
         </div>
     </div>
+    <div class="modal fade " id="modalAgregarSubTema" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleId">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        Add rows here
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade " id="modalContenido" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleId">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        Add rows here
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -202,6 +277,12 @@
     <script>
         $(document).ready(function () {
             $('#temas-table').DataTable();
+        });
+        $(document).ready(function () {
+            $('#subtemas-table').DataTable();
+        });
+        $(document).ready(function () {
+            $('#contenido-table').DataTable();
         });
     </script>
 </body>
